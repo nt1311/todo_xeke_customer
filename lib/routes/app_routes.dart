@@ -1,5 +1,6 @@
 part of "app_pages.dart";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 abstract class AppRoutes {
   static const HOME_TAB = '/home';
@@ -8,5 +9,7 @@ abstract class AppRoutes {
   static const BANNER_SCREEN = '/banner_screen';
   static const LOCATION_MAP = '/location_map';
 }
+=======
+>>>>>>> 0241349 (add routes)
 =======
 >>>>>>> 0241349 (add routes)
