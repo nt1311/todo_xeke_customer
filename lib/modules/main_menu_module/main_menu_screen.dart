@@ -11,8 +11,7 @@ class MainMenuScreen extends GetView<MainMenuViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() =>
-          controller.widgetOptions.elementAt(controller.selectedIndex.value)),
+      body: Obx(() => controller.widgetOptions.elementAt(controller.selectedIndex.value)),
       bottomNavigationBar: Obx(
         () {
           return BottomNavigationBar(
@@ -20,34 +19,34 @@ class MainMenuScreen extends GetView<MainMenuViewModel> {
               BottomNavigationBarItem(
                 icon: Image.asset(AppIcons.icHomeTab,
                     color: controller.selectedIndex.value == 0
-                        ? PRIMARY_ORANGE_BASE
-                        : GREY_DISABLE_COLOR),
+                        ? NEUTRAL_ORANGE_5_COLOR
+                        : NEUTRAL_GREY_5_COLOR),
                 label: 'Trang chủ',
               ),
               BottomNavigationBarItem(
                 icon: Image.asset(AppIcons.icCalendarTab,
                     color: controller.selectedIndex.value == 1
-                        ? PRIMARY_ORANGE_BASE
-                        : GREY_DISABLE_COLOR),
+                        ? NEUTRAL_ORANGE_5_COLOR
+                        : NEUTRAL_GREY_5_COLOR),
                 label: 'trips'.tr,
               ),
               BottomNavigationBarItem(
                 icon: Image.asset(AppIcons.icNotifiTab,
                     color: controller.selectedIndex.value == 2
-                        ? PRIMARY_ORANGE_BASE
-                        : GREY_DISABLE_COLOR),
+                        ? NEUTRAL_ORANGE_5_COLOR
+                        : NEUTRAL_GREY_5_COLOR),
                 label: 'notification'.tr,
               ),
               BottomNavigationBarItem(
                 icon: Image.asset(AppIcons.icProfileTab,
                     color: controller.selectedIndex.value == 3
-                        ? PRIMARY_ORANGE_BASE
-                        : GREY_DISABLE_COLOR),
+                        ? NEUTRAL_ORANGE_5_COLOR
+                        : NEUTRAL_GREY_5_COLOR),
                 label: 'profile_tab'.tr,
               ),
             ],
             currentIndex: controller.selectedIndex.value,
-            selectedItemColor: PRIMARY_ORANGE_BASE,
+            selectedItemColor: NEUTRAL_ORANGE_5_COLOR,
             onTap: controller.onItemTapped,
           );
         },

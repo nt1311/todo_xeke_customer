@@ -27,8 +27,8 @@ abstract class BaseViewModel extends GetxController {
   Future showToastNormal(String msg) async {
     await Fluttertoast.showToast(
       msg: msg,
-      backgroundColor: GREY_DISABLE_COLOR,
-      textColor: NEUTRAL_BLACK_COLOR,
+      backgroundColor: NEUTRAL_GREY_5_COLOR,
+      textColor: NEUTRAL_GREY_5_COLOR,
       gravity: ToastGravity.BOTTOM,
       toastLength: Toast.LENGTH_SHORT,
     );
@@ -37,8 +37,8 @@ abstract class BaseViewModel extends GetxController {
   Future showToastError(String msg) async {
     await Fluttertoast.showToast(
       msg: msg,
-      backgroundColor: PRIMARY_ORANGE_BASE,
-      textColor: SEMANTIC_ORANGE_WHITE_COLOR,
+      backgroundColor: NEUTRAL_ORANGE_5_COLOR,
+      textColor: NEUTRAL_GREY_1_COLOR,
       gravity: ToastGravity.BOTTOM,
       toastLength: Toast.LENGTH_LONG,
     );
@@ -47,8 +47,8 @@ abstract class BaseViewModel extends GetxController {
   Future showToastSuccess(String msg) async {
     await Fluttertoast.showToast(
       msg: msg,
-      backgroundColor: SEMANTIC_ORANGE_WHITE_COLOR,
-      textColor: PRIMARY_ORANGE_BASE,
+      backgroundColor: NEUTRAL_GREY_1_COLOR,
+      textColor: NEUTRAL_ORANGE_5_COLOR,
       gravity: ToastGravity.BOTTOM,
       toastLength: Toast.LENGTH_SHORT,
     );

@@ -11,13 +11,15 @@ class ChoosePoint {
 
 class HomeTabController extends GetxController {
   final ValueNotifier<List<ChoosePoint>> listChoosePoint = ValueNotifier([]);
-  List<String> car = ['7 chỗ', 'Limousine', '12 chỗ', '16 chỗ'];
+  List<String> car = ['7 chỗ', 'Limousine', '12 chỗ'];
   RxBool isSwitched = false.obs;
   RxInt selectIndex = 0.obs;
 
   addPoint() {
     if (listChoosePoint.value.length < 2) {
-      listChoosePoint.value.add(ChoosePoint(chooseRoute: 'Chọn điểm đón', phone: 'Số điện thoại'));
+      listChoosePoint.value.add(
+        ChoosePoint(chooseRoute: 'Chọn điểm đón', phone: 'Số điện thoại'),
+      );
       listChoosePoint.notifyListeners();
     }
   }
