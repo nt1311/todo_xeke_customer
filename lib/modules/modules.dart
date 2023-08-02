@@ -1,1 +1,1 @@
-export 'booking_car/booking_car_controller.dart';
+export 'booking_car/booking_car_view_module.dart';

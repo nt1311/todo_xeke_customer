@@ -5,7 +5,7 @@ import 'package:todo_xeke_customer/config/constants/app_colors.dart';
 import 'package:todo_xeke_customer/config/constants/app_icons.dart';
 
 import '../../widget/input_widget.dart';
-import 'booking_car_controller.dart';
+import 'booking_car_view_module.dart';
 
 class BookingCarScreen extends StatefulWidget {
   const BookingCarScreen({super.key});

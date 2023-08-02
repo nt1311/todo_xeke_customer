@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:todo_xeke_customer/modules/booking_car/booking_car_screen.dart';
 import 'package:todo_xeke_customer/modules/main_menu_module/home_tab/home_tab_sceeen.dart';
-import 'package:todo_xeke_customer/modules/main_menu_module/main_menu_module.dart';
+import 'package:todo_xeke_customer/modules/main_menu_module/main_menu_screen.dart';
+import 'package:todo_xeke_customer/modules/main_menu_module/main_menu_view.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
