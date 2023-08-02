@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_xeke_customer/config/constants/app_colors.dart';
+import 'package:todo_xeke_customer/config/constants/app_icons.dart';
+
+import '../../widget/input_widget.dart';
+import 'booking_car_controller.dart';
 
 class BookingCarScreen extends StatefulWidget {
   const BookingCarScreen({super.key});
@@ -11,7 +15,8 @@ class BookingCarScreen extends StatefulWidget {
 }
 
 class _BookingCarScreen extends State<BookingCarScreen> {
-  BookingCarScreen homeTabController = Get.put(BookingCarScreen());
+  final _viewController = Get.put(HomeTabController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,151 +39,83 @@ class _BookingCarScreen extends State<BookingCarScreen> {
   }
 
   Widget _body() {
-    return Container(
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            const SizedBox(height: 10),
-            _selectCarLine(),
-            const SizedBox(height: 15),
-            _orderBagCar(),
-            const SizedBox(height: 10),
-            _discountBookCar(),
-            const SizedBox(height: 15),
-            _chooseNumberPeople(),
-            const SizedBox(height: 10),
-            _chooseDateTime(),
-            const SizedBox(height: 10),
-            _chooseRoute(),
-            const SizedBox(height: 10),
-            _chossePickPoint(),
-          ],
-        ),
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          const SizedBox(height: 10),
+          _selectCarLine(),
+          const SizedBox(height: 15),
+          _orderBagCar(),
+          const SizedBox(height: 10),
+          _discountBookCar(),
+          const SizedBox(height: 15),
+          _chooseNumberPeople(),
+          const SizedBox(height: 10),
+          _chooseDateTime(),
+          const SizedBox(height: 10),
+          _chooseRoute(),
+          const SizedBox(height: 10),
+          _choosePickPoint(),
+        ],
       ),
     );
   }
 
   Widget _selectCarLine() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Chọn dòng xe",
-              style: TextStyle(
-                  fontFamily: "Canbin",
-                  fontWeight: FontWeight.w700,
-                  color: Colors.black,
-                  fontSize: 18),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Chọn dòng xe",
+            style: TextStyle(
+                fontFamily: "Canbin",
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+                fontSize: 18),
+          ),
+          const SizedBox(height: 10),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Wrap(
+              spacing: 16,
+              children: List.generate(
+                  _viewController.car.length,
+                  (index) => Obx(
+                        () => Container(
+                          width: 150,
+                          height: 50,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: _viewController.selectIndex.value == index
+                                  ? PRIMARY_ORANGE_BASE
+                                  : Colors.white,
+                              elevation: 0,
+                              side: BorderSide(width: 2, color: Colors.black38),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            onPressed: () => _viewController.selectIndex.value = index,
+                            child: Text(
+                              _viewController.car[index],
+                              style: const TextStyle(
+                                  fontFamily: "Canbi", fontSize: 16, color: Colors.black54),
+                            ),
+                          ),
+                        ),
+                      )),
             ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Container(
-                  width: 150,
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0,
-                      side: BorderSide(width: 2, color: Colors.black38),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "7 chỗ",
-                      style: TextStyle(
-                          fontFamily: "Canbi",
-                          fontSize: 16,
-                          color: Colors.black54),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 150,
-                  height: 50,
-                  padding: EdgeInsets.only(left: 10),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0,
-                      side: BorderSide(width: 2, color: Colors.black38),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "Limosine",
-                      style: TextStyle(
-                          fontFamily: "Canbi",
-                          fontSize: 16,
-                          color: Colors.black54),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 150,
-                  height: 50,
-                  padding: EdgeInsets.only(left: 10),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0,
-                      side: BorderSide(width: 2, color: Colors.black38),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "12 chỗ",
-                      style: TextStyle(
-                          fontFamily: "Canbi",
-                          fontSize: 16,
-                          color: Colors.black54),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 150,
-                  height: 50,
-                  padding: EdgeInsets.only(left: 10),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0,
-                      side: BorderSide(width: 2, color: Colors.black38),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "16 chỗ",
-                      style: TextStyle(
-                          fontFamily: "Canbi",
-                          fontSize: 16,
-                          color: Colors.black54),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
 
   Widget _orderBagCar() {
-    bool isSwitched = true;
+    print('build');
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Row(
@@ -192,18 +129,16 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                 fontSize: 18),
           ),
           const SizedBox(width: 180),
-          Transform.scale(
-            scale: 0.7,
-            child: CupertinoSwitch(
-              value: isSwitched,
-              activeColor: Color.fromARGB(255, 255, 77, 0),
-              onChanged: (bool? value) {
-                setState(() {
-                  isSwitched = value ?? false;
-                });
-              },
-            ),
-          ),
+          Obx(() {
+            return Transform.scale(
+              scale: 0.7,
+              child: CupertinoSwitch(
+                value: _viewController.isSwitched.value,
+                activeColor: PRIMARY_ORANGE_BASE,
+                onChanged: _viewController.bookCar,
+              ),
+            );
+          })
         ],
       ),
     );
@@ -220,14 +155,12 @@ class _BookingCarScreen extends State<BookingCarScreen> {
           SizedBox(width: 5),
           Text(
             "Đặt bao xe sẽ được",
-            style: TextStyle(
-                fontFamily: "Canbin", color: Colors.black, fontSize: 18),
+            style: TextStyle(fontFamily: "Canbin", color: Colors.black, fontSize: 18),
           ),
           SizedBox(width: 5),
           Text(
             "giảm giá",
-            style: TextStyle(
-                fontFamily: "Canbin", color: PRIMARY_ORANGE_BASE, fontSize: 18),
+            style: TextStyle(fontFamily: "Canbin", color: PRIMARY_ORANGE_BASE, fontSize: 18),
           ),
         ],
       ),
@@ -241,13 +174,15 @@ class _BookingCarScreen extends State<BookingCarScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Chọn số người đi",
-              style: TextStyle(
-                  fontFamily: "Canbin",
-                  fontWeight: FontWeight.w700,
-                  color: Colors.black,
-                  fontSize: 18),
+            Obx(
+              () => Text(
+                "Chọn số người đi (tối đa ${_viewController.car[_viewController.selectIndex.value].replaceAll('chỗ', 'người').replaceAll('Limousine', 'ffffff')})",
+                style: const TextStyle(
+                    fontFamily: "Canbin",
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                    fontSize: 18),
+              ),
             ),
             const SizedBox(height: 10),
             Container(
@@ -256,22 +191,17 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                 border: Border.all(color: Colors.black26),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: IconButton(
-                      icon: const Icon(Icons.remove),
-                      onPressed: () {},
-                    ),
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () {},
                   ),
-                  Container(
-                    child: Text("2"),
-                  ),
-                  Container(
-                    child: IconButton(
-                      icon: const Icon(Icons.add),
-                      onPressed: () {},
-                    ),
+                  Container(width: 1, height: 24, color: Colors.black),
+                  const Expanded(child: Center(child: Text("2"))),
+                  Container(width: 1, height: 24, color: Colors.black),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {},
                   ),
                 ],
               ),
@@ -314,10 +244,8 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                         children: [
                           const Text(
                             "08/11/2023",
-                            style: TextStyle(
-                                fontFamily: "Canbin",
-                                color: Colors.black,
-                                fontSize: 16),
+                            style:
+                                TextStyle(fontFamily: "Canbin", color: Colors.black, fontSize: 16),
                           ),
                           IconButton(
                             icon: const Icon(
@@ -347,10 +275,8 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                         children: [
                           const Text(
                             "6:00",
-                            style: TextStyle(
-                                fontFamily: "Canbin",
-                                color: Colors.black,
-                                fontSize: 16),
+                            style:
+                                TextStyle(fontFamily: "Canbin", color: Colors.black, fontSize: 16),
                           ),
                           SizedBox(width: 60),
                           IconButton(
@@ -377,8 +303,8 @@ class _BookingCarScreen extends State<BookingCarScreen> {
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
+        children: const [
+          Text(
             "Chọn tuyến",
             style: TextStyle(
                 fontFamily: "Canbin",
@@ -387,32 +313,21 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                 fontSize: 18),
           ),
           const SizedBox(height: 10),
-          Container(
-            child: TextField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(13),
-                hintText: "Chọn tuyến đường",
-                suffixIcon: Icon(Icons.keyboard_arrow_right_outlined),
-                fillColor: Colors.black26,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-          ),
+          InputWidget(
+              hintText: 'Chọn tuyến đường', suffixIcon: Icon(Icons.keyboard_arrow_right_outlined))
         ],
       ),
     );
   }
 
-  Widget _chossePickPoint() {
+  Widget _choosePickPoint() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Chọn thời gian",
+            "Chọn điểm đón ( tối đa 2 điểm )",
             style: TextStyle(
                 fontFamily: "Canbin",
                 fontWeight: FontWeight.w700,
@@ -420,28 +335,52 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                 fontSize: 18),
           ),
           const SizedBox(height: 10),
-          Container(
-            child: Row(
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    side: BorderSide(color: Colors.black26),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: Text(
-                    'Elevated Button',
-                    style: TextStyle(fontSize: 28),
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
+          ValueListenableBuilder<List<ChoosePoint>>(
+            valueListenable: _viewController.listChoosePoint,
+            builder: (context, listChoosePoint, child) => Wrap(
+                runSpacing: 16,
+                children: List.generate(
+                    listChoosePoint.length,
+                    (index) => Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Column(
+                            children: [
+                              _buildItemRow(
+                                Icons.location_on_rounded,
+                                listChoosePoint[index].chooseRoute,
+                                iconRight: Icons.clear,
+                                readOnly: true,
+                                onTap: () => print('qua màn chọn điểm đón'),
+                              ),
+                              const Divider(thickness: 1, height: 1, color: Colors.black),
+                              _buildItemRow(Icons.phone, listChoosePoint[index].phone),
+                            ],
+                          ),
+                        ))),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10, height: 16),
+          GestureDetector(
+              onTap: () => _viewController.addPoint(), child: Image.asset(AppIcons.imgButtonAdd)),
         ],
       ),
+    );
+  }
+
+  Widget _buildItemRow(IconData icon, String title,
+      {IconData? iconRight, bool readOnly = false, VoidCallback? onTap}) {
+    return Row(
+      children: [
+        Icon(icon, size: 20),
+        const SizedBox(width: 8),
+        Expanded(
+          child: InputWidget(
+              hintText: title, border: InputBorder.none, readOnly: readOnly, onTap: onTap),
+        ),
+        iconRight != null ? Icon(iconRight, size: 20) : const SizedBox(),
+      ],
     );
   }
 }
