@@ -4,6 +4,8 @@ import 'package:todo_xeke_customer/modules/main_menu_module/home_tab/home_tab_sc
 import 'package:todo_xeke_customer/modules/main_menu_module/main_menu_screen.dart';
 import 'package:todo_xeke_customer/modules/main_menu_module/main_menu_view.dart';
 
+import '../modules/location_module/location_screen.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -22,5 +24,9 @@ class AppPages {
         name: AppRoutes.BOOKING_CAR,
         page: () => const BookingCarScreen(),
         transition: Transition.cupertino),
+    GetPage(
+      name: AppRoutes.LOCATION_MAP,
+      page: () => const LocationScreen(),
+    ),
   ];
 }

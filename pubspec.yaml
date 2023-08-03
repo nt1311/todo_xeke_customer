@@ -46,7 +46,11 @@ dependencies:
   lite_rolling_switch: ^1.0.1
   rxdart: ^0.27.7
   fluttertoast: ^8.2.2
+  cupertino_date_textbox: ^1.0.3
 
+  flutter_cupertino_date_picker_fork: ^1.0.7
+
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

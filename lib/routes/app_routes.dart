@@ -5,5 +5,5 @@ abstract class AppRoutes {
   static const MAIN_MENU = '/main_menu';
   static const BOOKING_CAR = '/booking_car';
   static const BANNER_SCREEN = '/banner_screen';
-  static const GOOGLE_MAP = '/google_map';
+  static const LOCATION_MAP = '/location_map';
 }

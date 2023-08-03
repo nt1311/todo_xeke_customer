@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_xeke_customer/config/constants/app_colors.dart';
 import 'package:todo_xeke_customer/config/constants/app_icons.dart';
+import 'package:todo_xeke_customer/widget/widget_button_Style.dart';
 
-import '../../widget/widget_input_widget.dart';
+import '../../widget/widget_input.dart';
 import 'booking_car_view_module.dart';
 
 class BookingCarScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class BookingCarScreen extends StatefulWidget {
 }
 
 class _BookingCarScreen extends State<BookingCarScreen> {
-  final _viewController = Get.put(HomeTabController());
+  final _viewController = Get.put(BookingTabViewModule());
 
   @override
   Widget build(BuildContext context) {
@@ -43,22 +44,24 @@ class _BookingCarScreen extends State<BookingCarScreen> {
       physics: BouncingScrollPhysics(),
       child: Column(
         children: [
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           _selectCarLine(),
-          const SizedBox(height: 15),
+          const SizedBox(height: 16),
           _orderBagCar(),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           _discountBookCar(),
-          const SizedBox(height: 15),
+          const SizedBox(height: 16),
           _chooseNumberPeople(),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           _chooseDateTime(),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           _chooseRoute(),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           _choosePickUp(),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           _choosePickPay(),
+          const SizedBox(height: 16),
+          _CarBookingConfirmation(),
         ],
       ),
     );
@@ -91,20 +94,25 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: _viewController.selectIndex.value == index
-                                  ? NEUTRAL_ORANGE_5_COLOR
-                                  : Colors.white,
+                              backgroundColor:
+                                  _viewController.selectIndex.value == index
+                                      ? NEUTRAL_ORANGE_5_COLOR
+                                      : Colors.white,
                               elevation: 0,
-                              side: BorderSide(width: 2, color: NEUTRAL_RADIUS_COLOR),
+                              side: BorderSide(
+                                  width: 2, color: NEUTRAL_RADIUS_COLOR),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                               ),
                             ),
-                            onPressed: () => _viewController.selectIndex.value = index,
+                            onPressed: () =>
+                                _viewController.selectIndex.value = index,
                             child: Text(
                               _viewController.car[index],
                               style: const TextStyle(
-                                  fontFamily: "Canbi", fontSize: 16, color: NEUTRAL_GREY_3_COLOR),
+                                  fontFamily: "Canbi",
+                                  fontSize: 16,
+                                  color: NEUTRAL_GREY_3_COLOR),
                             ),
                           ),
                         ),
@@ -157,12 +165,18 @@ class _BookingCarScreen extends State<BookingCarScreen> {
           SizedBox(width: 5),
           Text(
             "Đặt bao xe sẽ được",
-            style: TextStyle(fontFamily: "Canbin", color: NEUTRAL_GREY_9_COLOR, fontSize: 18),
+            style: TextStyle(
+                fontFamily: "Canbin",
+                color: NEUTRAL_GREY_9_COLOR,
+                fontSize: 18),
           ),
           SizedBox(width: 5),
           Text(
             "giảm giá",
-            style: TextStyle(fontFamily: "Canbin", color: NEUTRAL_ORANGE_5_COLOR, fontSize: 18),
+            style: TextStyle(
+                fontFamily: "Canbin",
+                color: NEUTRAL_ORANGE_5_COLOR,
+                fontSize: 18),
           ),
         ],
       ),
@@ -258,7 +272,9 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                           const Text(
                             "08/11/2023",
                             style: TextStyle(
-                                fontFamily: "Canbin", color: NEUTRAL_GREY_9_COLOR, fontSize: 16),
+                                fontFamily: "Canbin",
+                                color: NEUTRAL_GREY_9_COLOR,
+                                fontSize: 16),
                           ),
                           IconButton(
                             icon: const Icon(
@@ -293,7 +309,9 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                           const Text(
                             "6:00",
                             style: TextStyle(
-                                fontFamily: "Canbin", color: NEUTRAL_GREY_9_COLOR, fontSize: 16),
+                                fontFamily: "Canbin",
+                                color: NEUTRAL_GREY_9_COLOR,
+                                fontSize: 16),
                           ),
                           const SizedBox(width: 72),
                           IconButton(
@@ -375,8 +393,12 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                                 readOnly: true,
                                 onTap: () => print('qua màn chọn điểm đón'),
                               ),
-                              const Divider(thickness: 1, height: 1, color: NEUTRAL_RADIUS_COLOR),
-                              _buildItemRow(Icons.phone, listChoosePoint[index].phone),
+                              const Divider(
+                                  thickness: 1,
+                                  height: 1,
+                                  color: NEUTRAL_RADIUS_COLOR),
+                              _buildItemRow(
+                                  Icons.phone, listChoosePoint[index].phone),
                             ],
                           ),
                         ))),
@@ -441,24 +463,32 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
-                      _buildItemRow(
-                        Icons.location_on_rounded,
-                        listChoosePoint[index].chooseRoute,
-                        iconRight: Icons.clear,
-                        readOnly: true,
-                        onTap: () => print('qua màn chọn điểm trá'),
-                      ),
+                      _buildItemRow(Icons.location_on_rounded,
+                          listChoosePoint[index].chooseRoute,
+                          iconRight: Icons.clear,
+                          readOnly: true,
+                          onTap: () async {}
+                          // print('qua màn chọn điểm trá'),
+                          ),
                     ],
                   ),
                 ),
               ),
             ),
           ),
-          const SizedBox(width: 10, height: 16),
           GestureDetector(
               onTap: () => _viewController.addPoint(),
               child: Image.asset(AppIcons.imgButtonPickPay)),
         ],
+      ),
+    );
+  }
+
+  Widget _CarBookingConfirmation() {
+    return Container(
+      child: ButtonStyleWidget(
+        onPressed: () {},
+        text: 'Xác nhận đặt xe',
       ),
     );
   }

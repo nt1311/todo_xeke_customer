@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:todo_xeke_customer/modules/location_module/location_view_module.dart';
 import 'package:todo_xeke_customer/routes/app_pages.dart';
 
 class ChoosePoint {
@@ -9,7 +10,7 @@ class ChoosePoint {
   ChoosePoint({required this.chooseRoute, required this.phone});
 }
 
-class HomeTabController extends GetxController {
+class BookingTabViewModule extends GetxController {
   final ValueNotifier<List<ChoosePoint>> listChoosePoint = ValueNotifier([]);
   List<String> car = ['7 chỗ', 'Limousine', '12 chỗ'];
   RxBool isSwitched = false.obs;
@@ -29,5 +30,5 @@ class HomeTabController extends GetxController {
     notifyChildrens();
   }
 
-  void BookingCarController() => Get.toNamed(AppRoutes.BOOKING_CAR);
+  void LocationViewMoidel() => Get.toNamed(AppRoutes.LOCATION_MAP);
 }
