@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_xeke_customer/config/constants/app_colors.dart';
 import 'package:todo_xeke_customer/config/constants/app_icons.dart';
+import 'package:todo_xeke_customer/modules/booking_car/booking_car_view.dart';
 import 'package:todo_xeke_customer/widget/widget_button_Style.dart';
-
-import '../../widget/widget_input.dart';
-import 'booking_car_view_module.dart';
+import 'package:todo_xeke_customer/widget/widget_input_widget.dart';
 
 class BookingCarScreen extends StatefulWidget {
   const BookingCarScreen({super.key});
@@ -60,8 +59,6 @@ class _BookingCarScreen extends State<BookingCarScreen> {
           _choosePickUp(),
           const SizedBox(height: 16),
           _choosePickPay(),
-          const SizedBox(height: 16),
-          _CarBookingConfirmation(),
         ],
       ),
     );
@@ -101,9 +98,6 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                               elevation: 0,
                               side: BorderSide(
                                   width: 2, color: NEUTRAL_RADIUS_COLOR),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
                             ),
                             onPressed: () =>
                                 _viewController.selectIndex.value = index,
@@ -476,6 +470,7 @@ class _BookingCarScreen extends State<BookingCarScreen> {
               ),
             ),
           ),
+          const SizedBox(width: 10, height: 16),
           GestureDetector(
               onTap: () => _viewController.addPoint(),
               child: Image.asset(AppIcons.imgButtonPickPay)),
