@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:todo_xeke_customer/modules/location_module/location_view_module.dart';
 import 'package:todo_xeke_customer/routes/app_pages.dart';
 
 class ChoosePoint {
@@ -15,6 +14,7 @@ class BookingTabViewModule extends GetxController {
   List<String> car = ['7 chỗ', 'Limousine', '12 chỗ'];
   RxBool isSwitched = false.obs;
   RxInt selectIndex = 0.obs;
+  RxString datecalendar = " a".obs;
 
   addPoint() {
     if (listChoosePoint.value.length < 2) {

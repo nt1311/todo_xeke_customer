@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker_fork.dart';
 import 'package:get/get.dart';
 import 'package:todo_xeke_customer/config/constants/app_colors.dart';
 import 'package:todo_xeke_customer/config/constants/app_icons.dart';
+import 'package:todo_xeke_customer/modules/booking_car/booking_car_view.dart';
+import 'package:todo_xeke_customer/widget/date_time_widget.dart';
 import 'package:todo_xeke_customer/widget/widget_button_Style.dart';
-
-import '../../widget/widget_input.dart';
-import 'booking_car_view_module.dart';
+import 'package:todo_xeke_customer/widget/widget_input.dart';
 
 class BookingCarScreen extends StatefulWidget {
   const BookingCarScreen({super.key});
@@ -61,7 +62,7 @@ class _BookingCarScreen extends State<BookingCarScreen> {
           const SizedBox(height: 16),
           _choosePickPay(),
           const SizedBox(height: 16),
-          _CarBookingConfirmation(),
+          _carBookingConfirmation(),
         ],
       ),
     );
@@ -87,36 +88,39 @@ class _BookingCarScreen extends State<BookingCarScreen> {
             child: Wrap(
               spacing: 16,
               children: List.generate(
-                  _viewController.car.length,
-                  (index) => Obx(
-                        () => Container(
-                          width: 150,
-                          height: 50,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  _viewController.selectIndex.value == index
-                                      ? NEUTRAL_ORANGE_5_COLOR
-                                      : Colors.white,
-                              elevation: 0,
-                              side: BorderSide(
-                                  width: 2, color: NEUTRAL_RADIUS_COLOR),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                            onPressed: () =>
-                                _viewController.selectIndex.value = index,
-                            child: Text(
-                              _viewController.car[index],
-                              style: const TextStyle(
-                                  fontFamily: "Canbi",
-                                  fontSize: 16,
-                                  color: NEUTRAL_GREY_3_COLOR),
-                            ),
-                          ),
-                        ),
-                      )),
+                _viewController.car.length,
+                (index) => Obx(
+                  () => Container(
+                    width: 150,
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            _viewController.selectIndex.value == index
+                                ? NEUTRAL_ORANGE_5_COLOR
+                                : Colors.white,
+                        elevation: 0,
+                        side: BorderSide(
+                            width: 2,
+                            color: _viewController.selectIndex.value == index
+                                ? NEUTRAL_ORANGE_5_COLOR
+                                : NEUTRAL_RADIUS_COLOR),
+                      ),
+                      onPressed: () =>
+                          _viewController.selectIndex.value = index,
+                      child: Text(
+                        _viewController.car[index],
+                        style: TextStyle(
+                            fontFamily: "Canbi",
+                            fontSize: 16,
+                            color: _viewController.selectIndex.value == index
+                                ? Colors.white
+                                : NEUTRAL_GREY_8_COLOR),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
           )
         ],
@@ -257,73 +261,16 @@ class _BookingCarScreen extends State<BookingCarScreen> {
           Row(
             children: [
               Container(
-                height: 48,
-                width: 164,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  border: Border.all(color: Colors.black26),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          const Text(
-                            "08/11/2023",
-                            style: TextStyle(
-                                fontFamily: "Canbin",
-                                color: NEUTRAL_GREY_9_COLOR,
-                                fontSize: 16),
-                          ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.calendar_month_outlined,
-                              color: NEUTRAL_GREY_9_COLOR,
-                            ),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(width: 10),
-              Container(
-                height: 48,
-                width: 164,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ),
-                  border: Border.all(color: Colors.black26),
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "6:00",
-                            style: TextStyle(
-                                fontFamily: "Canbin",
-                                color: NEUTRAL_GREY_9_COLOR,
-                                fontSize: 16),
-                          ),
-                          const SizedBox(width: 72),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.keyboard_arrow_down_outlined,
-                            ),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                child: DateTimeWidget(
+                  titleText: 'Select Date and Time',
+                  iconSection: Icons.calendar_month_outlined,
+                  onDateChanged: (DateTime? dateTime) {
+                    if (dateTime != null) {
+                      print('Selected date and time: ${dateTime.toString()}');
+                    } else {
+                      print('No date and time selected.');
+                    }
+                  },
                 ),
               ),
             ],
@@ -391,7 +338,8 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                                 listChoosePoint[index].chooseRoute,
                                 iconRight: Icons.clear,
                                 readOnly: true,
-                                onTap: () => print('qua màn chọn điểm đón'),
+                                onTap: () =>
+                                    _viewController.LocationViewMoidel(),
                               ),
                               const Divider(
                                   thickness: 1,
@@ -468,7 +416,7 @@ class _BookingCarScreen extends State<BookingCarScreen> {
                           iconRight: Icons.clear,
                           readOnly: true,
                           onTap: () async {}
-                          // print('qua màn chọn điểm trá'),
+                          // print('qua màn chọn điểm tr'),
                           ),
                     ],
                   ),
@@ -476,6 +424,7 @@ class _BookingCarScreen extends State<BookingCarScreen> {
               ),
             ),
           ),
+          const SizedBox(width: 10, height: 16),
           GestureDetector(
               onTap: () => _viewController.addPoint(),
               child: Image.asset(AppIcons.imgButtonPickPay)),
@@ -484,7 +433,7 @@ class _BookingCarScreen extends State<BookingCarScreen> {
     );
   }
 
-  Widget _CarBookingConfirmation() {
+  Widget _carBookingConfirmation() {
     return Container(
       child: ButtonStyleWidget(
         onPressed: () {},

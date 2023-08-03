@@ -3,6 +3,7 @@ import 'package:todo_xeke_customer/config/constants/app_colors.dart';
 
 class InputWidget extends StatelessWidget {
   final String? hintText;
+  final String? titleText;
   final InputBorder? border;
   final Widget? suffixIcon;
   final bool readOnly;
@@ -15,6 +16,7 @@ class InputWidget extends StatelessWidget {
     this.suffixIcon,
     this.readOnly = false,
     this.onTap,
+    this.titleText,
   });
 
   @override
