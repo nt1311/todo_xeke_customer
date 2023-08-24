@@ -3,12 +3,10 @@ import 'package:todo_xeke_customer/config/constants/app_colors.dart';
 
 class InputWidget extends StatelessWidget {
   final String? hintText;
-  final String? titleText;
   final InputBorder? border;
   final Widget? suffixIcon;
   final bool readOnly;
   final VoidCallback? onTap;
-  final Widget? prefixIcon;
 
   const InputWidget({
     super.key,
@@ -17,8 +15,6 @@ class InputWidget extends StatelessWidget {
     this.suffixIcon,
     this.readOnly = false,
     this.onTap,
-    this.titleText,
-    this.prefixIcon,
   });
 
   @override
@@ -27,10 +23,10 @@ class InputWidget extends StatelessWidget {
       onTap: onTap,
       readOnly: readOnly,
       decoration: InputDecoration(
-        prefixIcon: prefixIcon,
         contentPadding: EdgeInsets.all(13),
         hintText: hintText,
-        hintStyle: const TextStyle(color: NEUTRAL_GREY_3_COLOR),
+        hintStyle: TextStyle(color: NEUTRAL_GREY_3_COLOR),
+        // Đặt màu cho hintText tại đây
         suffixIcon: suffixIcon,
         fillColor: Colors.black26,
         border: border ??
