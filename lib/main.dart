@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.initila,
       getPages: AppPages.routes,
-      locale: Locale('vi', 'VN'),
     );
   }
 }

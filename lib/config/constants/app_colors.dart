@@ -19,6 +19,6 @@ const Color NEUTRAL_GREY_5_COLOR = Color(0xFFA3A3A3);
 const Color NEUTRAL_GREY_6_COLOR = Color(0xFF949494);
 const Color NEUTRAL_GREY_7_COLOR = Color(0xFF747474);
 const Color NEUTRAL_GREY_8_COLOR = Color(0xFF5A5A5A);
-const Color NEUTRAL_GREY_9_COLOR = Color(0xFF444444);
+const Color grey_4 = Color(0xFF444444);
 
 const Color NEUTRAL_RADIUS_COLOR = Color(0xFFCECECE);

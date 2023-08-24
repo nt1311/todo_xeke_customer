@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
 import 'package:todo_xeke_customer/routes/app_pages.dart';
 
 class ChoosePoint {
@@ -30,5 +31,10 @@ class BookingTabViewModule extends GetxController {
     notifyChildrens();
   }
 
+  void ChooseRouteViewModule() => Get.toNamed(AppRoutes.CHOOSE_ROUTE);
+
   void LocationViewMoidel() => Get.toNamed(AppRoutes.LOCATION_MAP);
+
+  void DiscountCodeBookingViewModule() =>
+      Get.toNamed(AppRoutes.DISCOUNT_CODE_BOOKING);
 }
