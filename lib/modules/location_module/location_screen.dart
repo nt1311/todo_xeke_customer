@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:todo_xeke_customer/config/constants/app_colors.dart';
 
@@ -20,14 +19,16 @@ class _LocationScreenState extends State<LocationScreen> {
           centerTitle: true,
           title: const Text(
             "Chọn điểm đón",
-            style: TextStyle(color: NEUTRAL_GREY_9_COLOR, fontSize: 20),
+            style: TextStyle(color: grey_4, fontSize: 20),
           ),
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
-              color: NEUTRAL_GREY_9_COLOR,
+              color: grey_4,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
           )),
       body: GoogleMap(
           initialCameraPosition:
